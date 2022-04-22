@@ -7,7 +7,7 @@ I have developed a smart contract that uses contract-to-contract calls to implem
 At the fundamental level, this contract implement an AMM between a token (the meta-asset) and the liquidity token of an existing nanopool. Because this is not the focus of this challenge, I used maks-ivanov [AMM Demo](https://github.com/maks-ivanov/amm-demo) to achieve an elementary infrastructure for my project. 
 
 ## Metapool
-While the base is a normal constant product AMM, the metapool does not permit users to trade between its two assets directly. Instead, the contract makes the appropriate inner transaction application call to a nanopool application to allow the user to seamlessly trade between the meta asset and any of the nanopool paired assets. To facilitate the interaction with the metapool contract, I provided a [MetapoolClient](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/metapool/metapoolAMMClient.py) which contain the pool operations.
+While the base is a normal constant product AMM, the metapool does not permit users to trade between its two assets directly. Instead, the contract makes the appropriate inner transaction application call to an existing nanopool to allow the user to seamlessly trade between the meta asset and any of the nanopool paired assets. To facilitate the interaction with the metapool contract, I provided a [MetapoolClient](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/metapool/metapoolAMMClient.py) which contains the metapool operations.
 
 ### Burn: Swapping UST -> USDC
 1. Swap UST -> nanopool LP in the metapool  
@@ -31,7 +31,7 @@ Activate the virtual environment
 `source ./venv/Scripts/activate` (win)  
 Install the requirements  
 `pip install -r requirements.txt`  
-Create a metapool/testing/.env file containing:  
+Create a `metapool/testing/.env` file containing:  
 `mnemonic = your creator account 25 words`  
 To use the example and testing script, also install the metapool package to the virtual environment, from the root folder:  
 `pip install -e .`  
@@ -40,15 +40,15 @@ To use the example and testing script, also install the metapool package to the 
 Run the examples using `python examples/...py`
 ### Initialize
 [Initialize.py](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/examples/Initialize.py)  
-Before running, run the `new_test_token.py` or ypur own test asset and set the newly minted asset ID in `metapool/testing/configTestnet.py`  
-This routine create and setup a metapool. After the script is completed, copy the ID of the newly minted application to `metapool/testing/configTestnet.py`  
+Before running, run the `new_test_token.py` or your own test asset and set the newly minted asset ID in `metapool/testing/configTestnet.py`  
+This routine creates and setup a metapool. After the script is completed, copy the ID of the newly minted application to `metapool/testing/configTestnet.py`  
 
 ### Add Liquidity
 [add_liquidity.py](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/examples/add_liquidity.py)  
 Make sure that your creator account is funded with nanopool lp asset to provide liquidity to the metapool.
 
 ### MetaSwap
-[metaswap.py](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/examples/metaswap.py) 
+[metaswap.py](https://github.com/YannLong17/NanoSwap-Meta-Pools/blob/main/examples/metaswap.py)   
 The metapool account needs to remain funded with some algo to pay for the inner transaction fee.
 
 ## Testing
