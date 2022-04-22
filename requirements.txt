@@ -1,0 +1,5 @@
+git+https://github.com/Algofiorg/algofi-amm-py-sdk@08c8fed833805749c4a641d06f10ac080291ceb5#egg=algofi_amm_py_sdk
+py-algorand-sdk==1.11.0
+pyteal==0.10.1
+pytest==7.1.1
+python-dotenv==0.20.0

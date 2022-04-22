@@ -127,3 +127,8 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# my tests
+test-*
+safeMetapool.py
+zap.py
