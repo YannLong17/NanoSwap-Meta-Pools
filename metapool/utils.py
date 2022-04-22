@@ -1,7 +1,7 @@
 from base64 import b64decode
 from pyteal import compileTeal, MAX_TEAL_VERSION, Mode
 from metapool.contracts.metapoolContract import approval, clear
-from typing import  Tuple
+from typing import Tuple
 from algosdk.v2client.algod import AlgodClient
 from algosdk import account, mnemonic
 
@@ -43,7 +43,11 @@ def getPoolTokenId(appGlobalState):
         )
 
 
-def compiledContract(algod_client: AlgodClient) -> Tuple[bytes, bytes]: 
-    approval_program = algod_client.compile(compileTeal(approval(), mode=Mode.Application, version=MAX_TEAL_VERSION))
-    clear_program = algod_client.compile(compileTeal(clear(), mode=Mode.Application, version=MAX_TEAL_VERSION))
-    return (b64decode(approval_program['result']), b64decode(clear_program['result']))
+def compiledContract(algod_client: AlgodClient) -> Tuple[bytes, bytes]:
+    approval_program = algod_client.compile(
+        compileTeal(approval(), mode=Mode.Application, version=MAX_TEAL_VERSION)
+    )
+    clear_program = algod_client.compile(
+        compileTeal(clear(), mode=Mode.Application, version=MAX_TEAL_VERSION)
+    )
+    return (b64decode(approval_program["result"]), b64decode(clear_program["result"]))
